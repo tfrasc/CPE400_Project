@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def home
-    # @status1 = Connection.find(1)
-    # @status2 = Connection.find(2)
+    @status1 = Connection.find(1)
+    @status2 = Connection.find(2)
   end
 
   def update
