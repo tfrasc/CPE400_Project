@@ -1,6 +1,19 @@
 <h1>CPE 400 Project Web Interface</h1>
 <h3>By Amir Behmaram, Austyn Herman, and Tyler Frasca</h3>
 
+<div>Status 1:
+  <span style="color:<%= @status1['status'] == true ? 'green' : 'red' %>">
+    <%= @status1['status'] == true ? 'Connected' : 'Disconnected' %>
+  </span>
+</div>
+
+<div>Status 2:
+  <span style="color:<%= @status2['status'] == true ? 'green' : 'red' %>">
+    <%= @status2['status'] == true ? 'Connected' : 'Disconnected' %>
+  </span>
+</div>
+
+<br>
 <button onClick="updateConnection(1)">Set Status 1</button>
 <button onClick="updateConnection(2)">Set Status 2</button>
 
