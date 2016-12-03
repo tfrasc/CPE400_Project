@@ -1,2 +1,22 @@
 <h1>CPE 400 Project Web Interface</h1>
 <h3>By Amir Behmaram, Austyn Herman, and Tyler Frasca</h3>
+
+<button onClick="updateConnection(1)">Set Status 1</button>
+<button onClick="updateConnection(2)">Set Status 2</button>
+
+<button onClick="resetConnection(1)">Reset Status 1</button>
+<button onClick="resetConnection(2)">Reset Status 2</button>
+
+<script>
+  var updateConnection = function(id) {
+    $.post('/update', {
+      id: id
+    })
+  }
+
+  var resetConnection = function(id) {
+    $.post('/reset', {
+      id: id
+    })
+  }
+</script>
