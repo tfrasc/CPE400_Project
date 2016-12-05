@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   def home
     @status1 = Connection.find(1)
     @status2 = Connection.find(2)
+    @photos = Photo.all
   end
 
   def update
@@ -15,5 +16,25 @@ class ApplicationController < ActionController::Base
   def reset
     @connection = Connection.find(params[:id])
     @connection.update(status: false)
+  end
+
+  def add_photo
+    p "PARAMS"
+    p params
+
+    @photo = Photo.new(image: params[:image])
+    @photo.save!
+  end
+
+  # def process_photo
+  #
+  # end
+
+  def remove_photos
+    @photos = Photo.all
+
+    @photos.each do |photo|
+      photo.delete
+    end
   end
 end

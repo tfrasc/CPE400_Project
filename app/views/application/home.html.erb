@@ -20,6 +20,15 @@
 <button onClick="resetConnection(1)">Reset Status 1</button>
 <button onClick="resetConnection(2)">Reset Status 2</button>
 
+<button onClick="removePhotos()">Remove Photos</button>
+
+<div>
+  <h4>Photos</h4><br>
+  <% @photos.each do |photo| %>
+    <image src='<%= photo.image %>'>
+  <% end %>
+</div>
+
 <script>
   var updateConnection = function(id) {
     $.post('/update', {
@@ -31,5 +40,9 @@
     $.post('/reset', {
       id: id
     })
+  }
+
+  var removePhotos = function(id) {
+    $.get('/remove_photos');
   }
 </script>
