@@ -8,4 +8,6 @@
 
 Arduino.create()
 Arduino.create()
+BluetoothDevice.create()
+BluetoothDevice.create()
 MagneticSensor.create()
