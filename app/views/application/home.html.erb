@@ -1,25 +1,31 @@
 <h1>CPE 400 Project Web Interface</h1>
 <h3>By Amir Behmaram, Austyn Herman, and Tyler Frasca</h3>
 
-<div>Status 1:
-  <span style="color:<%= @status1['status'] == true ? 'green' : 'red' %>">
-    <%= @status1['status'] == true ? 'Connected' : 'Disconnected' %>
+<div>Arduino 1 (Master) Status:
+  <span style="color:<%= @status1['status'] == true ? 'green' : @status1['status'] == nil ? 'blue' : 'red' %>">
+    <%= @status1['status'] == true ? 'Connected' : @status1['status'] == nil ? 'Waiting...' : 'Disconnected' %>
   </span>
 </div>
 
-<div>Status 2:
-  <span style="color:<%= @status2['status'] == true ? 'green' : 'red' %>">
-    <%= @status2['status'] == true ? 'Connected' : 'Disconnected' %>
+<div>Arduino 2 (Slave) Status:
+  <span style="color:<%= @status2['status'] == true ? 'green' : @status2['status'] == nil ? 'blue' : 'red' %>">
+    <%= @status2['status'] == true ? 'Connected' : @status2['status'] == nil ? 'Waiting...' : 'Disconnected' %>
   </span>
 </div>
 
 <br>
-<button onClick="updateConnection(1)">Set Status 1</button>
-<button onClick="updateConnection(2)">Set Status 2</button>
+<button onClick="connectConnection(1)">Connect Arduino 1 (Master)</button>
+<button onClick="connectConnection(2)">Connect Arduino 2 (Slave)</button>
 
-<button onClick="resetConnection(1)">Reset Status 1</button>
-<button onClick="resetConnection(2)">Reset Status 2</button>
+<br>
+<button onClick="resetConnection(1)">Reset Arduino 1 (Master)</button>
+<button onClick="resetConnection(2)">Reset Arduino 2 (Slave)</button>
 
+<br>
+<button onClick="errorConnection(1)">Error Arduino 1 (Master)</button>
+<button onClick="errorConnection(2)">Error Arduino 2 (Slave)</button>
+
+<br>
 <button onClick="removePhotos()">Remove Photos</button>
 
 <div>
@@ -30,8 +36,8 @@
 </div>
 
 <script>
-  var updateConnection = function(id) {
-    $.post('/update', {
+  var connectConnection = function(id) {
+    $.post('/connect', {
       id: id
     })
   }
@@ -42,7 +48,13 @@
     })
   }
 
-  var removePhotos = function(id) {
+  var errorConnection = function(id) {
+    $.post('/error', {
+      id: id
+    })
+  }
+
+  var removePhotos = function() {
     $.get('/remove_photos');
   }
 </script>

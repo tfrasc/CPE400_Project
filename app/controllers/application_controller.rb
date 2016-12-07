@@ -8,12 +8,17 @@ class ApplicationController < ActionController::Base
     @photos = Photo.all
   end
 
-  def update
+  def connect
     @connection = Connection.find(params[:id])
     @connection.update(status: true)
   end
 
   def reset
+    @connection = Connection.find(params[:id])
+    @connection.update(status: nil)
+  end
+
+  def error
     @connection = Connection.find(params[:id])
     @connection.update(status: false)
   end
