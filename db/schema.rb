@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(version: 20161207045512) do
   end
 
   create_table "intrusions", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "magnetic_sensor_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "magnetic_sensors", force: :cascade do |t|

@@ -41,6 +41,7 @@ class ApplicationController < ActionController::Base
 
   def add_intrusion
     @intrusion = Intrusion.new
+    @intrusion.magnetic_sensor_id = params[:magnetic_sensor_id]
     @intrusion.save!
   end
 

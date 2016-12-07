@@ -1,8 +1,8 @@
 <h1>CPE 400 Project Web Interface</h1>
-<h3>By Amir Behmaram, Austyn Herman, and Tyler Frasca</h3>
-
+<h2>By Amir Behmaram, Austyn Herman, and Tyler Frasca</h2>
+<hr>
 <br>
-<h4>Arduinos</h4>
+<h3 style="text-decoration: underline">Arduinos</h3>
 <div>
   <% @arduinos.each do |arduino| %>
     <div>Arduino <%= arduino.id %> <%= arduino.id == 1 ? '(Master)' : nil %> Status:
@@ -18,7 +18,7 @@
 </div>
 
 <br>
-<h4>Magnetic Sensors</h4>
+<h3 style="text-decoration: underline">Magnetic Sensors</h3>
 <div>
   <% @magnetic_sensors.each do |magnetic_sensor| %>
     <div>Magnetic Sensor <%= magnetic_sensor.id %> Status:
@@ -34,18 +34,21 @@
 </div>
 
 <br>
-<h4>Intrusions</h4>
+<h3 style="text-decoration: underline">Intrusions</h3>
 <div>
   <% @intrusions.each do |intrusion| %>
-    <div><span style="color: red">Intrusion</span> at
+    <div><span style="color: red">Intrusion</span> on
       <%= intrusion.created_at.strftime("%A %B %e, %Y at %l:%M %p") %>
+      on Magnetic Sensor <%= intrusion.magnetic_sensor_id %>
     </div>
   <% end %>
 </div>
 
 <br>
+<h3 style="text-decoration: underline">Photos</h3>
 <div>
-  <h4>Photos</h4><br>
+  <button onClick="removePhotos()">Remove Photos</button>
+  <br><br>
   <% @photos.each do |photo| %>
     <image src='<%= photo.image %>'>
   <% end %>
