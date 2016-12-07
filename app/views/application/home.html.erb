@@ -1,33 +1,49 @@
 <h1>CPE 400 Project Web Interface</h1>
 <h3>By Amir Behmaram, Austyn Herman, and Tyler Frasca</h3>
 
-<div>Arduino 1 (Master) Status:
-  <span style="color:<%= @status1['status'] == true ? 'green' : @status1['status'] == nil ? 'blue' : 'red' %>">
-    <%= @status1['status'] == true ? 'Connected' : @status1['status'] == nil ? 'Waiting...' : 'Disconnected' %>
-  </span>
+<br>
+<h4>Arduinos</h4>
+<div>
+  <% @arduinos.each do |arduino| %>
+    <div>Arduino <%= arduino.id %> <%= arduino.id == 1 ? '(Master)' : nil %> Status:
+      <span style="color:<%= arduino.status == true ? 'green' : arduino.status == nil ? 'blue' : 'red' %>">
+        <%= arduino.status == true ? 'Connected' : arduino.status == nil ? 'Waiting...' : 'Disconnected' %>
+      </span>
+    </div>
+    <button onClick="connect_arduino(<%= arduino.id %>)">Connect Arduino <%= arduino.id %> <%= arduino.id == 1 ? '(Master)' : nil %></button>
+    <button onClick="reset_arduino(<%= arduino.id %>)">Reset Arduino <%= arduino.id %> <%= arduino.id == 1 ? '(Master)' : nil %></button>
+    <button onClick="error_arduino(<%= arduino.id %>)">Error Arduino <%= arduino.id %> <%= arduino.id == 1 ? '(Master)' : nil %></button>
+    <br><br>
+  <% end %>
 </div>
 
-<div>Arduino 2 (Slave) Status:
-  <span style="color:<%= @status2['status'] == true ? 'green' : @status2['status'] == nil ? 'blue' : 'red' %>">
-    <%= @status2['status'] == true ? 'Connected' : @status2['status'] == nil ? 'Waiting...' : 'Disconnected' %>
-  </span>
+<br>
+<h4>Magnetic Sensors</h4>
+<div>
+  <% @magnetic_sensors.each do |magnetic_sensor| %>
+    <div>Magnetic Sensor <%= magnetic_sensor.id %> Status:
+      <span style="color:<%= magnetic_sensor.status == true ? 'green' : magnetic_sensor.status == nil ? 'blue' : 'red' %>">
+        <%= magnetic_sensor.status == true ? 'Connected' : magnetic_sensor.status == nil ? 'Waiting...' : 'Disconnected' %>
+      </span>
+    </div>
+    <button onClick="connect_magnetic_sensor(<%= magnetic_sensor.id %>)">Connect Magnetic Sensor <%= magnetic_sensor.id %> </button>
+    <button onClick="reset_magnetic_sensor(<%= magnetic_sensor.id %>)">Reset Magnetic Sensor <%= magnetic_sensor.id %> </button>
+    <button onClick="error_magnetic_sensor(<%= magnetic_sensor.id %>)">Error Magnetic Sensor <%= magnetic_sensor.id %> </button>
+    <br><br>
+  <% end %>
 </div>
 
 <br>
-<button onClick="connectConnection(1)">Connect Arduino 1 (Master)</button>
-<button onClick="connectConnection(2)">Connect Arduino 2 (Slave)</button>
+<h4>Intrusions</h4>
+<div>
+  <% @intrusions.each do |intrusion| %>
+    <div><span style="color: red">Intrusion</span> at
+      <%= intrusion.created_at.strftime("%A %B %e, %Y at %l:%M %p") %>
+    </div>
+  <% end %>
+</div>
 
 <br>
-<button onClick="resetConnection(1)">Reset Arduino 1 (Master)</button>
-<button onClick="resetConnection(2)">Reset Arduino 2 (Slave)</button>
-
-<br>
-<button onClick="errorConnection(1)">Error Arduino 1 (Master)</button>
-<button onClick="errorConnection(2)">Error Arduino 2 (Slave)</button>
-
-<br>
-<button onClick="removePhotos()">Remove Photos</button>
-
 <div>
   <h4>Photos</h4><br>
   <% @photos.each do |photo| %>
@@ -36,20 +52,38 @@
 </div>
 
 <script>
-  var connectConnection = function(id) {
-    $.post('/connect', {
+  var connect_arduino = function(id) {
+    $.post('/connect_arduino', {
       id: id
     })
   }
 
-  var resetConnection = function(id) {
-    $.post('/reset', {
+  var reset_arduino = function(id) {
+    $.post('/reset_arduino', {
       id: id
     })
   }
 
-  var errorConnection = function(id) {
-    $.post('/error', {
+  var error_arduino = function(id) {
+    $.post('/error_arduino', {
+      id: id
+    })
+  }
+
+  var connect_magnetic_sensor = function(id) {
+    $.post('/connect_magnetic_sensor', {
+      id: id
+    })
+  }
+
+  var reset_magnetic_sensor = function(id) {
+    $.post('/reset_magnetic_sensor', {
+      id: id
+    })
+  }
+
+  var error_magnetic_sensor = function(id) {
+    $.post('/error_magnetic_sensor', {
       id: id
     })
   }

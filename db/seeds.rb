@@ -5,5 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Connection.create(status: false)
-Connection.create(status: false)
+
+Arduino.create()
+Arduino.create()
+MagneticSensor.create()

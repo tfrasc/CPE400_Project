@@ -3,24 +3,45 @@ class ApplicationController < ActionController::Base
   # skip_before_filter :verify_authenticity_token
 
   def home
-    @status1 = Connection.find(1)
-    @status2 = Connection.find(2)
+    @arduinos = Arduino.all.order("id ASC")
+    @magnetic_sensors = MagneticSensor.all.order("id ASC")
+    @intrusions = Intrusion.all.order("id ASC")
     @photos = Photo.all
   end
 
-  def connect
-    @connection = Connection.find(params[:id])
-    @connection.update(status: true)
+  def connect_arduino
+    @arduino = Arduino.find(params[:id])
+    @arduino.update(status: true)
   end
 
-  def reset
-    @connection = Connection.find(params[:id])
-    @connection.update(status: nil)
+  def reset_arduino
+    @arduino = Arduino.find(params[:id])
+    @arduino.update(status: nil)
   end
 
-  def error
-    @connection = Connection.find(params[:id])
-    @connection.update(status: false)
+  def error_arduino
+    @arduino = Arduino.find(params[:id])
+    @arduino.update(status: false)
+  end
+
+  def connect_magnetic_sensor
+    @magnetic_sensor = MagneticSensor.find(params[:id])
+    @magnetic_sensor.update(status: true)
+  end
+
+  def reset_magnetic_sensor
+    @magnetic_sensor = MagneticSensor.find(params[:id])
+    @magnetic_sensor.update(status: nil)
+  end
+
+  def error_magnetic_sensor
+    @magnetic_sensor = MagneticSensor.find(params[:id])
+    @magnetic_sensor.update(status: false)
+  end
+
+  def add_intrusion
+    @intrusion = Intrusion.new
+    @intrusion.save!
   end
 
   def add_photo
@@ -30,10 +51,6 @@ class ApplicationController < ActionController::Base
     @photo = Photo.new(image: params[:image])
     @photo.save!
   end
-
-  # def process_photo
-  #
-  # end
 
   def remove_photos
     @photos = Photo.all

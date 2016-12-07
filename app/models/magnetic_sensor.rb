@@ -1,0 +1,2 @@
+class MagneticSensor < ApplicationRecord
+end
