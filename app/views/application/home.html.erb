@@ -74,6 +74,9 @@
   <button onClick="removePhotos()">Remove Photos</button>
   <br><br>
   <% @photos.each do |photo| %>
+    <div><span style="color: red">Photo</span> taken on
+      <%= photo.created_at.strftime("%A %B %e, %Y at %l:%M %p") %>
+    </div>
     <image src='<%= photo.image %>'>
   <% end %>
 </div>
