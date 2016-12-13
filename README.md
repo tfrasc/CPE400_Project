@@ -1,24 +1,15 @@
-# README
+# CPE 400 Home Security System Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Rails web interface for our CPE 400 (Computer Networking) Project.
 
-Things you may want to cover:
+This interface has the following features:
 
-* Ruby version
+* Connection statuses for Arduino's, Bluetooth Device's, and Magnetic Sensor's
 
-* System dependencies
+* Statuses updated through HTTP POSTs which edit Postgres db records
 
-* Configuration
+* Limited Bluetooth functionality via Google Chrome Bluetooth application
 
-* Database creation
+* Home Intrusion detection and record keeping through db
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Photos from Arduino stored in db when Arduino camera is trigger
