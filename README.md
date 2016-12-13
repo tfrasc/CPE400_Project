@@ -12,4 +12,4 @@ This interface has the following features:
 
 * Home Intrusion detection and record keeping through db
 
-* Photos from Arduino stored in db when Arduino camera is trigger
+* Photos from Arduino (processed as base64 strings) stored in db when Arduino camera is triggered
